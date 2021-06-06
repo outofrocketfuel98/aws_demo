@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create new show</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>New Show</h1>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="/shows/create" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="network">Network</label>
+            <input type="text" name="network" id="network" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="release_date">Release Date</label>
+            <input type="date" name="release_date" id="release_date" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" id="description" cols="30" rows="10" class="form-control" required></textarea>
+        </div>
+        <button class="btn btn-primary">Submit</button>
+    </form>
+    <h3><a href="/logout">Log Out</a></h3>
+    <h3><a href="/shows">Go Back</a></h3>
+
+</body>
+</html>

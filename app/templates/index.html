@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="text-danger" >{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+        <h1>Welcome, let's watch movies</h1>
+        <h2>Register</h2>
+        <form action='/register' method="POST">
+            {% csrf_token %}
+            <label for=''>First Name</label>
+            <input type='text' name='first_name'>
+            <label for=''>Last Name</label>
+            <input type='text' name='last_name'>
+            <label for=''>Email</label>
+            <input type='email' name='email'>
+            <label for=''>Password</label>
+            <input type='password' name='password'>
+            <label for=''>Confirm Password</label>
+            <input type='password' name='confirm_password'>
+            <button class="btn btn-primary mt-2" type="submit">Register</button>
+        </form>
+        <h2>Login</h2>
+        <form action='/login' method="POST">
+            {% csrf_token %}
+            <label for=''>Email</label>
+            <input type='email' name= 'email'>
+            <label for=''>Password</label>
+            <input type='password' name= 'password'>
+            <button class="btn btn-primary mt-2" type="submit">Login</button>
+        </form>
+</body>
+</html>

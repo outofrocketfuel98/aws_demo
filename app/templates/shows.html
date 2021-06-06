@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shows</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>All Shows of {{user.first_name}} {{user.last_name}}</h1>
+    <h1><a href="/logout">Log Out</a></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Network</th>
+                <th>Release Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for show in user_shows %}
+            <tr>
+                <td>{{ show.id }}</td>
+                <td>{{ show.title }}</td>
+                <td>{{ show.network }}</td>
+                <td>{{ show.release_date|date:"SHORT_DATE_FORMAT" }}</td>
+                <td><a href="/shows/{{ show.id }}">Show</a> | <a href="/shows/{{ show.id }}/edit">Edit</a> | <a href="/shows/{{ show.id }}/delete">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <a href="/shows/new">Add a Show!</a>
+    </table>
+</body>
+</html>
